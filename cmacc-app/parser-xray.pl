@@ -84,13 +84,15 @@ foreach( $$field =~ /\{([^}]+)\}/g ) {
        my $ox = $part ? $part . $ex : $ex;
 
        my $value = parse($orig, $ox);      
-       my $spanvalue = "<br>(" . $ox . "=<span title=\"" . $ox . "\" id=\"" . $ox . "\" >". $value . "</span>)";
+       my $spanvalue = "<ul><li>(" . $ox.  "=<span title=\"" . $ox . "\" id=\"" . $ox . "\" >". $value . "</span>)</li></ul>";
        $$field =~ s/\{\Q$ex\E\}/$spanvalue/gg if $value;
      }
       }
 
+# Now with key option as $ARGV[1]
 
-my $output  = parse($ARGV[0], "Model.Root");
+my $output  = parse($ARGV[0], $ARGV[1]);
+
 print $output;
 
 # print "\n\n" . $filelist;
