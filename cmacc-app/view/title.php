@@ -17,7 +17,13 @@ echo "<hr>";
 $lib_path = LIB_PATH;
 
 
-$document = `perl $lib_path/parser.pl $path/$dir $keyName $wrapName`;
+# Adding ability to pass a starting Key to the rendering
+
+if (strlen($keyName) < 2) { 
+  $keyName = "r00t";
+}
+
+$document = `perl $lib_path/parser-title.pl $path/$dir $keyName `;
 
 $minDocLength = 1;
 
